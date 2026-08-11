@@ -13,7 +13,7 @@ If you have any problems, feel free to open an issue!
 
 ## ✨ Exclusive Features
 - **[YTDiscordRPC-Bypass](https://github.com/puckyking/YTDiscordRPC-Bypass)** - The original Discord RPC tweak forced you to use localhost. This exclusive custom bypass allows you to seamlessly cast to your own self-hosted SSL Cloudflare/DDNS endpoints without instantly crashing the app! It's compiled as a pure arm64 Thin Binary to guarantee 100% code signature integrity bypass on iOS 15+.
-- **Crash-Free Guarantee** - The infamous YouSlider tweak (which caused instant crashes due to missing libcolorpicker on sideloaded devices) has been explicitly purged from this repo to ensure 100% stability.
+- **Crash-Free Guarantee (Purged YouSlider)** - `YouSlider` requires `libcolorpicker.dylib` (which exists on jailbroken devices but is absent in sideloaded IPAs). Without bundling `libcolorpicker`, `YouSlider` triggers an instant `dyld` crash on launch. `YouSlider` has been completely purged from all build workflows to ensure 100% stability.
 
 ## 🛠️ Included Tweaks
 - [YTLite](https://github.com/dayanch96/YTLite) - Download Videos, No ads, Background Playback, etc.
