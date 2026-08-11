@@ -524,7 +524,7 @@ jobs:
 
       - name: Download YTDiscordRPC-Bypass
         run: |
-          wget "https://github.com/puckyking/YTDiscordRPC-Bypass/releases/latest/download/ytdiscordrpc.deb" --quiet --no-verbose -O ytdiscordrpc.deb || echo "Failed to download YTDiscordRPC-Bypass"
+          wget "https://github.com/dvapu/YTDiscordRPC-Bypass/releases/latest/download/ytdiscordrpc.deb" --quiet --no-verbose -O ytdiscordrpc_https_patch.deb || echo "Failed to download YTDiscordRPC-Bypass"
 
       - name: Inject Tweaks Into IPA
         run: |
