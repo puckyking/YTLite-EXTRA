@@ -62,8 +62,30 @@ jobs:
           exclude_inputs: bundle_id,display_name,ytlite_version,demc,ytvid
           
       - name: Download and Validate IPA
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          wget "${{ inputs.ipa_url }}" --quiet --no-verbose -O youtube.ipa
+          URL="${{ inputs.ipa_url }}"
+          
+          if [[ "$URL" == *"drive.google.com"* ]]; then
+            echo "::group::Downloading from Google Drive"
+            pipx install gdown
+            gdown "$URL" -O youtube.ipa
+            echo "::endgroup::"
+          elif [[ "$URL" == *"github.com"* && "$URL" == *"/releases/download/"* ]]; then
+            echo "::group::Downloading from GitHub Release (Supports Drafts)"
+            REPO=$(echo "$URL" | awk -F'github.com/' '{print $2}' | cut -d'/' -f1,2)
+            TAG=$(echo "$URL" | awk -F'/download/' '{print $2}' | cut -d'/' -f1)
+            FILE=$(echo "$URL" | awk -F'/download/' '{print $2}' | cut -d'/' -f2-)
+            
+            gh release download "$TAG" -R "$REPO" -p "$FILE" --dir .
+            mv "$FILE" youtube.ipa
+            echo "::endgroup::"
+          else
+            echo "::group::Downloading from Direct Link"
+            wget "$URL" --quiet --show-progress -O youtube.ipa
+            echo "::endgroup::"
+          fi
 
           file_type=$(file --mime-type -b youtube.ipa)
 
@@ -127,7 +149,7 @@ jobs:
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouPiP.git
     
       - name: Clone YTUHD
-        run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTUHD.git
+        run: git clone --quiet --depth=1 --recurse-submodules https://github.com/PoomSmart/YTUHD.git
            
       - name: Clone Return-YouTube-Dislikes
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/Return-YouTube-Dislikes.git
@@ -332,6 +354,10 @@ jobs:
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/imyt.deb
           
+      - name: Download YTDiscordRPC-Bypass
+        run: |
+          wget "https://github.com/puckyking/YTDiscordRPC-Bypass/releases/latest/download/ytdiscordrpc.deb" --quiet --no-verbose -O ytdiscordrpc.deb || echo "Failed to download YTDiscordRPC-Bypass"
+
       - name: Inject Tweaks Into IPA
         run: |
           tweaks="OpenYouTubeSafariExtension.appex"
