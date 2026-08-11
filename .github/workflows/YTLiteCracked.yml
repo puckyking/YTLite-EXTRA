@@ -299,7 +299,7 @@ jobs:
         if: ${{ inputs.all_tweaks || inputs.youloop }}
         run: git clone --quiet --depth=1 https://github.com/bhackel/YouLoop.git
 
-- name: Clone YouChooseQuality
+      - name: Clone YouChooseQuality
         if: ${{ inputs.all_tweaks || inputs.youchoosequality }}
         run: git clone --quiet https://github.com/PoomSmart/YouChooseQuality.git
 
@@ -544,4 +544,5 @@ jobs:
       - name: Job Summary - Cleanup
         run: |
           echo -e '### 🧹 Cleanup\n\nYou can remove previous GitHub Actions run here: https://github.com/${{ github.repository }}/actions/workflows/delete-old-workflows-run.yml And if you want to delelte old draft releases you have then here: https://github.com/${{ github.repository }}/actions/workflows/delete-old-draft-releases.yml' >> $GITHUB_STEP_SUMMARY
+
 
