@@ -354,9 +354,9 @@ jobs:
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/imyt.deb
           
-      - name: Download YTDiscordRPC-Bypass
-        run: |
-          wget "https://github.com/puckyking/YTDiscordRPC-Bypass/releases/latest/download/ytdiscordrpc.deb" --quiet --no-verbose -O ytdiscordrpc.deb || echo "Failed to download YTDiscordRPC-Bypass"
+#      - name: Download YTDiscordRPC-Bypass
+#        run: |
+#          wget "https://github.com/puckyking/YTDiscordRPC-Bypass/releases/latest/download/ytdiscordrpc.deb" --quiet --no-verbose -O ytdiscordrpc.deb || echo "Failed to download YTDiscordRPC-Bypass"
 
       - name: Inject Tweaks Into IPA
         run: |
