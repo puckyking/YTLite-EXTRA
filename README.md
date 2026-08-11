@@ -1,4 +1,4 @@
-﻿# YTLite Pro 🚀
+# YTLite Pro 🚀
 
 Welcome to **YTLite Pro** (formerly YTLitePlusEXTRA)! This is the ultimate, crash-free YouTube experience for iOS, packed with exclusive tweaks and tailored for users who sign apps using their own Paid Certs or want a seamless installation. 
 
@@ -11,8 +11,8 @@ If you have any problems, feel free to open an issue!
 
 **NOTE:** Before you open a new issue, please check the [FAQs](FAQs.md) first to make sure your issue hasn't been answered already.
 
-## 🔥 Exclusive Features
-- **[YTDiscordRPC-Bypass](https://github.com/puckyking/YTDiscordRPC-Bypass)** - The original Discord RPC tweak forced you to use localhost. This exclusive custom bypass allows you to use your own self-hosted SSL Cloudflare/DDNS endpoints without instantly crashing the app! 
+## ✨ Exclusive Features
+- **[YTDiscordRPC-Bypass](https://github.com/puckyking/YTDiscordRPC-Bypass)** - The original Discord RPC tweak forced you to use localhost. This exclusive custom bypass allows you to seamlessly cast to your own self-hosted SSL Cloudflare/DDNS endpoints without instantly crashing the app! It's compiled as a pure arm64 Thin Binary to guarantee 100% code signature integrity bypass on iOS 15+.
 - **Crash-Free Guarantee** - The infamous YouSlider tweak (which caused instant crashes due to missing libcolorpicker on sideloaded devices) has been explicitly purged from this repo to ensure 100% stability.
 
 ## 🛠️ Included Tweaks
@@ -41,8 +41,7 @@ If you have any problems, feel free to open an issue!
     <li>Click on <strong>Sync fork</strong>, and if your branch is out-of-date, click on <strong>Update branch</strong>.</li>
     <li>Navigate to <strong>Actions</strong> in your forked repository and select <strong>Build YTLitePro IPA with YTLite Cracked.</strong></li>
     <li>Click the <strong>Run workflow</strong> button located on the right side.</li>
-    <li>Get a decrypted .ipa file (I cannot provide this due to legal reasons), then upload it to a file provider (e.g., filebin.net, Google Drive, or Dropbox). Paste the URL of the decrypted IPA file in the provided field.</li>
-    <strong>NOTE:</strong> Google Drive links and GitHub Releases are fully supported by our custom downloader script!
+    <li><strong>No need to hunt for IPAs!</strong> The Decrypted IPA URL field is pre-filled with a clean, direct Github Release link (v21.25.5). Say goodbye to bypassing Google Drive virus warnings and sketchy URL shorteners!</li>
     <li>Enter the tweak version from the releases (The latest release is selected by default). You can also change the BundleID and Display Name if desired.</li>
     <li>Make sure all inputs are correct, then click <strong>Run workflow</strong> to start the process.</li>
     <li>Wait for the build to finish. You can download the YTLite Pro IPA from the releases section of your forked repo!</li>

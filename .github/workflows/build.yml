@@ -4,7 +4,7 @@ on:
     inputs:
       ipa_url:
         description: "URL to the decrypted IPA file"
-        default: ""
+        default: "https://github.com/puckyking/YTLite-EXTRA/releases/download/untagged-8b2e0ed5b5d0593ad23e/com.google.ios.youtube_21.25.5_und3fined.ipa"
         required: true
         type: string
         
