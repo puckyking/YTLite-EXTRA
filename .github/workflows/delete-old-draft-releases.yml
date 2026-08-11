@@ -1,4 +1,4 @@
-name: Delete old draft releases
+﻿name: Delete old draft releases
 on:
   workflow_dispatch:
         inputs:
@@ -22,3 +22,4 @@ jobs:
           threshold: ${{ inputs.time }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
