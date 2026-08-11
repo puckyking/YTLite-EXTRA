@@ -1,4 +1,4 @@
-name: Build YTLitePlusEXTRA IPA with YTLite Cracked 
+name: Build YTLitePro IPA with YTLite Cracked 
 
 on:
   workflow_dispatch:
@@ -139,7 +139,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build YTLitePlusEXTRA IPA (YTLite v5.2.1) Cracked
+    name: Build YTLitePro IPA (YTLite v5.2.1) Cracked
     runs-on: macos-latest
     permissions:
       contents: write
@@ -559,7 +559,7 @@ jobs:
           echo "Injecting the following components:"
           printf '  - %s\n' "${tweaks[@]}"
 
-          cyan -i youtube.ipa -o YTLitePlusEXTRA_${{ env.YT_VERSION }}_v5.2.1_cracked.ipa \
+          cyan -i youtube.ipa -o YTLitePro_${{ env.YT_VERSION }}_v5.2.1_cracked.ipa \
             -uwef "${tweaks[@]}" \
             -n "${{ inputs.display_name }}" \
             -b "${{ inputs.bundle_id }}"
@@ -567,14 +567,14 @@ jobs:
       - name: Create a Draft Release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: ytliteplusextra_ytlitecracked-ipa${{ github.run_number }}
-          name: YTLitePlusEXTRA_${{ env.YT_VERSION }}_v5.2.1_cracked
-          files: YTLitePlusEXTRA_${{ env.YT_VERSION }}_v5.2.1_cracked.ipa
+          tag_name: YTLitePro_ytlitecracked-ipa${{ github.run_number }}
+          name: YTLitePro_${{ env.YT_VERSION }}_v5.2.1_cracked
+          files: YTLitePro_${{ env.YT_VERSION }}_v5.2.1_cracked.ipa
           draft: true
 
       - name: Job Summary - Build Complete
         run: |
-          echo -e '### 🛠️ Build YTLitePlusEXTRA IPA Complete!' >> $GITHUB_STEP_SUMMARY
+          echo -e '### 🛠️ Build YTLitePro IPA Complete!' >> $GITHUB_STEP_SUMMARY
 
       - name: Job Summary - Output the Draft Release Link
         run: |

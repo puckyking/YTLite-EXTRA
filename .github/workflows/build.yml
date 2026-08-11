@@ -1,4 +1,4 @@
-name: Build YTLitePlusEXTRA IPA
+name: Build YTLitePro IPA
 on:
   workflow_dispatch:
     inputs:
@@ -50,7 +50,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build YTLitePlusEXTRA IPA
+    name: Build YTLitePro IPA
     runs-on: macos-latest
     permissions:
       contents: write
@@ -364,19 +364,19 @@ jobs:
             tweaks="$tweaks $f"
           done
           
-          cyan -i youtube.ipa -o YTLitePlusEXTRA_${{ env.YT_VERSION }}_v${{ inputs.ytlite_version }}.ipa -uwef $tweaks -n "${{ inputs.display_name }}" -b ${{ inputs.bundle_id }}
+          cyan -i youtube.ipa -o YTLitePro_${{ env.YT_VERSION }}_v${{ inputs.ytlite_version }}.ipa -uwef $tweaks -n "${{ inputs.display_name }}" -b ${{ inputs.bundle_id }}
 
       - name: Create a Draft Release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: ytliteplusextra-ipa${{ github.run_number }}
-          name: YTLitePlusEXTRA_${{ env.YT_VERSION }}_v${{ inputs.ytlite_version }} (${{ github.run_number }}) 
-          files: YTLitePlusEXTRA_${{ env.YT_VERSION }}_v${{ inputs.ytlite_version }}.ipa
+          tag_name: YTLitePro-ipa${{ github.run_number }}
+          name: YTLitePro_${{ env.YT_VERSION }}_v${{ inputs.ytlite_version }} (${{ github.run_number }}) 
+          files: YTLitePro_${{ env.YT_VERSION }}_v${{ inputs.ytlite_version }}.ipa
           draft: true
 
       - name: Job Summary - Build Complete
         run: |
-          echo -e '### 🛠️ Build YTLitePlusEXTRA IPA Complete!' >> $GITHUB_STEP_SUMMARY
+          echo -e '### 🛠️ Build YTLitePro IPA Complete!' >> $GITHUB_STEP_SUMMARY
 
       - name: Job Summary - Output the Draft Release Link
         run: |
