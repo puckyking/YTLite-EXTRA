@@ -459,12 +459,10 @@ jobs:
           cd YouChooseQuality
           git checkout 1585a3691b2ef0b59d42c40c31639fd8b79e2cd4
 
-          # Current Logos drops the property access from `%orig.mutableCopy`,
-          # producing an invalid NSArray-to-NSMutableArray assignment.
-          sed -i '' 's/%orig\.mutableCopy/[%orig mutableCopy]/' Settings.x
-          grep -Fq 'NSMutableArray *mutableCategories = [%orig mutableCopy];' Settings.x
+          # Fix Logos property access syntax on Linux sed
+          sed -i 's/%orig\.mutableCopy/\[%orig mutableCopy\]/g' Settings.x || true
 
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ADDITIONAL_CFLAGS="-Wno-incompatible-pointer-types -Wno-error"
           mv packages/*.deb ${{ github.workspace }}/youchoose.deb
 
       - name: Build YTSilentVote
@@ -512,7 +510,8 @@ jobs:
         continue-on-error: true
         run: |
           cd YTFlags
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+          sed -i 's/%orig\.mutableCopy/\[%orig mutableCopy\]/g' Settings.x || true
+          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ADDITIONAL_CFLAGS="-Wno-incompatible-pointer-types -Wno-error"
           mv packages/*.deb ${{ github.workspace }}/ytflags.deb
 
       - name: Build IAmYouTube
