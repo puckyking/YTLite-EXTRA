@@ -299,11 +299,7 @@ jobs:
         if: ${{ inputs.all_tweaks || inputs.youloop }}
         run: git clone --quiet --depth=1 https://github.com/bhackel/YouLoop.git
 
-      - name: Clone Alderis
-        if: ${{ inputs.all_tweaks || inputs.alderis }}
-        run: git clone --quiet --depth=1 https://github.com/hbang/Alderis.git
-
-      - name: Clone YouChooseQuality
+- name: Clone YouChooseQuality
         if: ${{ inputs.all_tweaks || inputs.youchoosequality }}
         run: git clone --quiet https://github.com/PoomSmart/YouChooseQuality.git
 
@@ -435,24 +431,7 @@ jobs:
           make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ${{ github.workspace }}/youloop.deb
 
-      - name: ${{ (inputs.all_tweaks || inputs.alderis) && 'Build Alderis' || 'Skip Alderis (not selected)' }}
-        if: ${{ inputs.all_tweaks || inputs.alderis }}
-        continue-on-error: true
-        run: |
-          cd Alderis
-          make clean
-
-          # lcpshim only searches its local staged Frameworks directory.
-          # Populate it after `make clean`, which removes the .theos tree.
-          frameworks="$PWD/.theos/obj/install/Library/Frameworks"
-          mkdir -p "$frameworks"
-          cp -R "$THEOS/sdks/iPhoneOS18.6.sdk/System/Library/Frameworks/Preferences.framework" "$frameworks/"
-          test -f "$frameworks/Preferences.framework/Preferences.tbd"
-
-          make package DEBUG=0 FINALPACKAGE=1 ARCHS=arm64
-          mv packages/*.deb ${{ github.workspace }}/alderis.deb
-
-      - name: Build YouChooseQuality
+- name: Build YouChooseQuality
         if: ${{ inputs.all_tweaks || inputs.youchoosequality }}
         continue-on-error: true
         run: |
@@ -565,3 +544,4 @@ jobs:
       - name: Job Summary - Cleanup
         run: |
           echo -e '### 🧹 Cleanup\n\nYou can remove previous GitHub Actions run here: https://github.com/${{ github.repository }}/actions/workflows/delete-old-workflows-run.yml And if you want to delelte old draft releases you have then here: https://github.com/${{ github.repository }}/actions/workflows/delete-old-draft-releases.yml' >> $GITHUB_STEP_SUMMARY
+
